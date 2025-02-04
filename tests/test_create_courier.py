@@ -1,7 +1,7 @@
 import pytest
 from scooter_api import ApiClient
 
-COURIER_DATA_SUCCESS = [{"courier_login": "av_konovalov_sprint_7",
+COURIER_DATA_SUCCESS = [{"courier_login": "av_konovalov_sprint_7_register_1",
                          "courier_password": "qwerty1234",
                          "courier_first_name": "Courier"}]
 
