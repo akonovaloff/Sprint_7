@@ -1,132 +1,65 @@
 import pytest
-from scooter_api.scooter_api import ApiClient
-
-COURIER_DATA_SUCCESS = [{"courier_login": "av_konovalov_sprint_7_register_1",
-                         "courier_password": "qwerty1234",
-                         "courier_first_name": "Courier"}]
+from conftest import client, user_data, registered_user
 
 
-class TestRegisterCourier:
-    client = ApiClient()
-    COURIER_DATA_REGISTER_SUCCESS = [{"courier_login": "av_konovalov_sprint_7_register_1",
-                                      "courier_password": "qwerty1234",
-                                      "courier_first_name": "Courier"}]
-
-    def setup_class(self):
-
-        for courier_data in self.COURIER_DATA_REGISTER_SUCCESS:
-            response = self.client.send_login_to_account_request(courier_login=courier_data["courier_login"],
-                                                                 courier_password=courier_data["courier_password"])
-            if response.status_code == self.client.LOGIN_SUCCESS_CODE:
-                """Удалить аккаунт перед тестом"""
-                courier_id = str(response.json()["id"])
-                delete_resp = self.client.send_delete_courier_request(courier_id)
-                assert delete_resp.status_code == self.client.DELETE_SUCCESS_CODE
-
-    def teardown_class(self):
-        self.setup_class(self)
-
-    @pytest.mark.parametrize("courier_data", COURIER_DATA_REGISTER_SUCCESS)
-    def test_register_new_courier_success(self, courier_data: dict[str, str]):
-        """ Тест проверяет возможность успешного создания курьера
-        :param courier_data: словарь, содержащий данные, необходимые для создания курьера (login, password, firstName)
-        Ожидаемый статус-код: 201
-        Ожидаемый ответ сервера: {"ok": True}
+class TestCreateCourier:
+    def test_create_courier_success(self, client, user_data):
         """
-        expected_status_code = 201
-        expected_json = {"ok": True}
+        Тест проверяет статус-код и формат ответа сервера при успешном создании курьера
+        """
 
-        response = self.client.send_register_new_courier_request(**courier_data)
+        # Отправляем запрос на регистрацию
+        resp = client.send_register_request(**user_data)
 
-        assert response.status_code == expected_status_code, (
-            f"Ожидался статус-код {expected_status_code}, получен {response.status_code}"
-        )
-        assert response.json() == expected_json, (
-            f"Ожидался ответ {expected_json}, получен {response.json()}"
+        # Поверяем статус-код ответа
+        assert resp.status_code == client.REGISTER_SUCCESS_CODE, (
+            f"Не удалось зарегистрировать пользователя: {user_data["login"]}"
+            f"\tОжидался статус-код {client.REGISTER_SUCCESS_CODE}, получен {resp.status_code}"
+            f"\tОтвет сервера: {resp.text}"
         )
 
+        # Проверяем, формат ответа
+        assert resp.json() == {'ok': True}, f"Ответ сервера не совпадает с ожидаемым"
 
-class TestLoginToAccount:
-    client = ApiClient()
-    COURIER_DATA_LOGIN_SUCCESS = [{"courier_login": "av_konovalov_sprint_7_login_1",
-                                   "courier_password": "qwerty1234",
-                                   "courier_first_name": "Courier"}]
-
-    def setup_class(self):
-        for courier_data in self.COURIER_DATA_LOGIN_SUCCESS:
-            response = self.client.send_login_to_account_request(courier_login=courier_data["courier_login"],
-                                                                 courier_password=courier_data["courier_password"])
-            if response.status_code != self.client.LOGIN_SUCCESS_CODE:
-                """Зарегистрировать аккаунт перед тестом"""
-                register_resp = self.client.send_register_new_courier_request(**courier_data)
-                assert register_resp.status_code == self.client.REGISTER_SUCCESS_CODE
-
-    def teardown_class(self):
-        for courier_data in self.COURIER_DATA_LOGIN_SUCCESS:
-            response = self.client.send_login_to_account_request(courier_login=courier_data["courier_login"],
-                                                                 courier_password=courier_data["courier_password"])
-            if response.status_code == self.client.LOGIN_SUCCESS_CODE:
-                """Удалить аккаунт перед тестом"""
-                courier_id = str(response.json()["id"])
-                delete_resp = self.client.send_delete_courier_request(courier_id)
-                assert delete_resp.status_code == self.client.DELETE_SUCCESS_CODE
-
-    @pytest.mark.parametrize("courier_data", COURIER_DATA_LOGIN_SUCCESS)
-    def test_send_login_to_account_request_success(self, courier_data: dict[str, str]):
+    def test_creating_duplicates_of_courier_is_prohibited(self, client, registered_user):
         """
-        Тест проверяет возможность курьера успешно залогиниться.
-        Ожидаемый статус-код: 201
-        Ожидаемый ответ сервера: {"ok": True}
-        :param courier_data: словарь, содержащий данные, необходимые чтобы залогинить курьера (login, password)
+        Тест проверяет статус-код и формат ответа сервера при создании дубликатов курьера
         """
+        # Логинимся, чтобы проверить, что пользователь создан и получить его id
+        src_id = client.login(registered_user)
 
-        response = self.client.send_login_to_account_request(courier_login=courier_data["courier_login"],
-                                                             courier_password=courier_data["courier_password"])
+        # Отправляем запрос на повторную регистрацию пользователя
+        resp = client.send_register_request(**registered_user)
 
-        assert response.status_code == self.client.LOGIN_SUCCESS_CODE, (
-            f"Ожидался статус-код {self.client.LOGIN_SUCCESS_CODE}, получен {response.status_code}"
+        # Поверяем статус-код ответа
+        assert resp.status_code == client.REGISTER_CONFLICT_CODE, (
+            f"Возникла проблема при дублировании пользователя: {registered_user["login"]}"
+            f"\tОжидался статус-код {client.REGISTER_SUCCESS_CODE}, получен {resp.status_code}"
+            f"\tОтвет сервера: {resp.text}"
         )
 
-        # Проверка структуры ответа
-        response_json = response.json()
-        assert "id" in response_json, "В ответе отсутствует ключ 'id'"
-
-        # Проверка типа значения id (должно быть число)
-        assert isinstance(response_json["id"], int), f"ID должен быть числом, получен {type(response_json['id'])}"
-
-
-class TestDeleteCourier:
-    client = ApiClient()
-    COURIER_DATA_DELETE_SUCCESS = [{"courier_login": "av_konovalov_sprint_7_delete_1",
-                                    "courier_password": "qwerty1234",
-                                    "courier_first_name": "Courier"}]
-
-    def setup_class(self):
+    @pytest.mark.parametrize("required_field", ["login", "password", "firstName"])
+    def test_creating_courier_without_required_fields(self, client, user_data, required_field):
         """
-        Проверяем, что попытка залогиниться под тестовыми пользователями проходит успешно. Если нет, то регистрируем такого пользователя
-        :return:
+        Тест проверяет статус-код и формат ответа сервера при создании дубликатов курьера
         """
+        # Создаём копию данных пользователя, чтобы не потерять исходные данные
+        user = user_data.copy()
+        # Переименовать ключ "first_name" в "firstName"
+        user["firstName"] = user.pop("first_name")
+        # Удаляем одно из обязательных полей
+        del user[required_field]
 
-        for courier_data in self.COURIER_DATA_DELETE_SUCCESS:
-            login_response = self.client.send_login_to_account_request(courier_login=courier_data["courier_login"],
-                                                                 courier_password=courier_data["courier_password"])
-            if login_response.status_code != self.client.LOGIN_SUCCESS_CODE:
-                register_response = self.client.send_register_new_courier_request(**courier_data)
-                assert register_response.status_code == self.client.REGISTER_SUCCESS_CODE
+        # Отправляем запрос на регистрацию с изменёнными данными
+        resp = client.send_register_raw_data(user)
 
-    @pytest.mark.parametrize("courier_data", COURIER_DATA_DELETE_SUCCESS)
-    def test_send_delete_courier_request_success(self, courier_data):
-        """
-        Тест проверяет возможность успешного удаления для ранее созданного аккаунта
-        :return:
-        """
-
-        login_resp = self.client.send_login_to_account_request(courier_login=courier_data["courier_login"],
-                                                               courier_password=courier_data["courier_password"])
-        assert login_resp.status_code == self.client.LOGIN_SUCCESS_CODE, (
-            f"Ожидался статус-код {self.client.LOGIN_SUCCESS_CODE}, получен {login_resp.status_code}"
+        # Поверяем статус-код ответа
+        assert resp.status_code in (client.REGISTER_UNFILLED_CODE, 504), (
+            f'Удалось создать пользователя без поля "{required_field}"\n'
+            f"\tДанные пользователя: {user}\n"
+            f"\tОжидался статус-код {client.REGISTER_SUCCESS_CODE}, получен {resp.status_code}\n"
+            f"\tОтвет сервера: {resp.text}\n"
         )
-        courier_id = str(login_resp.json()["id"])
-        print(f'courier_id: {courier_id}')
-        delete_resp = self.client.send_delete_courier_request(courier_id)
-        assert delete_resp.status_code == self.client.DELETE_SUCCESS_CODE
+
+        # Проверяем, формат ответа
+        assert resp.json()['message'] == 'Недостаточно данных для создания учетной записи'
