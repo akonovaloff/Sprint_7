@@ -4,8 +4,13 @@ import requests
 class ApiClient:
     BASE_API_URL = "https://qa-scooter.praktikum-services.ru/"
     LOGIN_COURIER_URL = BASE_API_URL + "/api/v1/courier/login"
-    CREATE_COURIER_URL = BASE_API_URL + "api/v1/courier"
+    REGISTER_COURIER_URL = BASE_API_URL + "api/v1/courier"
     DELETE_COURIER_URL = BASE_API_URL + "/api/v1/courier/"
+
+    LOGIN_SUCCESS_CODE = 200
+    REGISTER_SUCCESS_CODE = 201
+    DELETE_SUCCESS_CODE = 200
+
 
     def send_register_new_courier_request(self,
                                           courier_login: str,
@@ -24,7 +29,7 @@ class ApiClient:
             "firstName": courier_first_name
         }
         headers = {"Content-Type": "application/json"}
-        response = requests.post(self.CREATE_COURIER_URL, json=courier_data, headers=headers)
+        response = requests.post(self.REGISTER_COURIER_URL, json=courier_data, headers=headers)
         return response
 
     def send_login_to_account_request(self,
