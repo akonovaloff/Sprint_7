@@ -1,0 +1,449 @@
+
+--> GET: {
+    "limit": "10",
+    "page": "0"
+}
+<-- {
+    "orders": [
+        {
+            "id": 418247,
+            "courierId": null,
+            "firstName": null,
+            "lastName": null,
+            "address": null,
+            "metroStation": null,
+            "phone": null,
+            "rentTime": null,
+            "deliveryDate": null,
+            "track": 149235,
+            "color": null,
+            "comment": null,
+            "createdAt": "2025-02-07T10:22:20.865Z",
+            "updatedAt": "2025-02-07T10:22:20.865Z",
+            "status": 0
+        },
+        {
+            "id": 418248,
+            "courierId": null,
+            "firstName": null,
+            "lastName": null,
+            "address": null,
+            "metroStation": null,
+            "phone": null,
+            "rentTime": null,
+            "deliveryDate": null,
+            "track": 691691,
+            "color": null,
+            "comment": null,
+            "createdAt": "2025-02-07T10:22:21.338Z",
+            "updatedAt": "2025-02-07T10:22:21.338Z",
+            "status": 0
+        },
+        {
+            "id": 418249,
+            "courierId": null,
+            "firstName": null,
+            "lastName": null,
+            "address": null,
+            "metroStation": null,
+            "phone": null,
+            "rentTime": null,
+            "deliveryDate": null,
+            "track": 751715,
+            "color": null,
+            "comment": null,
+            "createdAt": "2025-02-07T10:22:21.802Z",
+            "updatedAt": "2025-02-07T10:22:21.802Z",
+            "status": 0
+        },
+        {
+            "id": 418270,
+            "courierId": null,
+            "firstName": "Naruto",
+            "lastName": "Uchiha",
+            "address": "Konoha, 142 apt.",
+            "metroStation": "105",
+            "phone": "+7 800 355 35 35",
+            "rentTime": 5,
+            "deliveryDate": "2025-03-03T00:00:00.000Z",
+            "track": 588503,
+            "color": [
+                "BLACK"
+            ],
+            "comment": "Saske, come back to Konoha",
+            "createdAt": "2025-02-07T10:39:15.058Z",
+            "updatedAt": "2025-02-07T10:39:15.058Z",
+            "status": 0
+        },
+        {
+            "id": 418271,
+            "courierId": null,
+            "firstName": "Naruto",
+            "lastName": "Uchiha",
+            "address": "Konoha, 142 apt.",
+            "metroStation": "106",
+            "phone": "+7 800 355 35 35",
+            "rentTime": 5,
+            "deliveryDate": "2025-03-03T00:00:00.000Z",
+            "track": 396391,
+            "color": [
+                "BLACK"
+            ],
+            "comment": "Saske, come back to Konoha",
+            "createdAt": "2025-02-07T10:39:15.359Z",
+            "updatedAt": "2025-02-07T10:39:15.359Z",
+            "status": 0
+        },
+        {
+            "id": 418272,
+            "courierId": null,
+            "firstName": "Naruto",
+            "lastName": "Uchiha",
+            "address": "Konoha, 142 apt.",
+            "metroStation": "107",
+            "phone": "+7 800 355 35 35",
+            "rentTime": 5,
+            "deliveryDate": "2025-03-03T00:00:00.000Z",
+            "track": 309873,
+            "color": [
+                "BLACK"
+            ],
+            "comment": "Saske, come back to Konoha",
+            "createdAt": "2025-02-07T10:39:15.506Z",
+            "updatedAt": "2025-02-07T10:39:15.506Z",
+            "status": 0
+        },
+        {
+            "id": 418250,
+            "courierId": null,
+            "firstName": "Petr",
+            "lastName": "Petrov",
+            "address": "Mars, 12 lunka",
+            "metroStation": "Marsianskaya",
+            "phone": "+1234567890",
+            "rentTime": 3,
+            "deliveryDate": "2125-02-10T00:00:00.000Z",
+            "track": 810819,
+            "color": [
+                "BLACK"
+            ],
+            "comment": "Bez Ananasov",
+            "createdAt": "2025-02-07T10:26:18.892Z",
+            "updatedAt": "2025-02-07T10:26:18.892Z",
+            "status": 0
+        },
+        {
+            "id": 418251,
+            "courierId": null,
+            "firstName": "Petr",
+            "lastName": "Petrov",
+            "address": "Mars, 12 lunka",
+            "metroStation": "Marsianskaya",
+            "phone": "+1234567890",
+            "rentTime": 3,
+            "deliveryDate": "2125-02-10T00:00:00.000Z",
+            "track": 594531,
+            "color": [
+                "GREY"
+            ],
+            "comment": "Bez Ananasov",
+            "createdAt": "2025-02-07T10:26:19.085Z",
+            "updatedAt": "2025-02-07T10:26:19.085Z",
+            "status": 0
+        },
+        {
+            "id": 418252,
+            "courierId": null,
+            "firstName": "Petr",
+            "lastName": "Petrov",
+            "address": "Mars, 12 lunka",
+            "metroStation": "Marsianskaya",
+            "phone": "+1234567890",
+            "rentTime": 3,
+            "deliveryDate": "2125-02-10T00:00:00.000Z",
+            "track": 635812,
+            "color": [
+                "BLACK",
+                "GREY"
+            ],
+            "comment": "Bez Ananasov",
+            "createdAt": "2025-02-07T10:26:19.216Z",
+            "updatedAt": "2025-02-07T10:26:19.216Z",
+            "status": 0
+        },
+        {
+            "id": 418253,
+            "courierId": null,
+            "firstName": "Petr",
+            "lastName": "Petrov",
+            "address": "Mars, 12 lunka",
+            "metroStation": "Marsianskaya",
+            "phone": "+1234567890",
+            "rentTime": 3,
+            "deliveryDate": "2125-02-10T00:00:00.000Z",
+            "track": 828,
+            "color": [],
+            "comment": "Bez Ananasov",
+            "createdAt": "2025-02-07T10:26:19.390Z",
+            "updatedAt": "2025-02-07T10:26:19.390Z",
+            "status": 0
+        }
+    ],
+    "pageInfo": {
+        "page": 0,
+        "total": 1983,
+        "limit": 10
+    },
+    "availableStations": [
+        {
+            "name": "Бульвар Рокоссовского",
+            "number": "1",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Охотный Ряд",
+            "number": "10",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Шаболовская",
+            "number": "105",
+            "color": "#F07025"
+        },
+        {
+            "name": "Ленинский проспект",
+            "number": "106",
+            "color": "#F07025"
+        },
+        {
+            "name": "Академическая",
+            "number": "107",
+            "color": "#F07025"
+        },
+        {
+            "name": "Профсоюзная",
+            "number": "108",
+            "color": "#F07025"
+        },
+        {
+            "name": "Новые Черёмушки",
+            "number": "109",
+            "color": "#F07025"
+        },
+        {
+            "name": "Библиотека имени Ленина",
+            "number": "11",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Калужская",
+            "number": "110",
+            "color": "#F07025"
+        },
+        {
+            "name": "Беляево",
+            "number": "111",
+            "color": "#F07025"
+        },
+        {
+            "name": "Коньково",
+            "number": "112",
+            "color": "#F07025"
+        },
+        {
+            "name": "Тёплый Стан",
+            "number": "113",
+            "color": "#F07025"
+        },
+        {
+            "name": "Ясенево",
+            "number": "114",
+            "color": "#F07025"
+        },
+        {
+            "name": "Планерная",
+            "number": "116",
+            "color": "#89339E"
+        },
+        {
+            "name": "Тушинская",
+            "number": "118",
+            "color": "#89339E"
+        },
+        {
+            "name": "Кропоткинская",
+            "number": "12",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Парк культуры",
+            "number": "13",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Фрунзенская",
+            "number": "14",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Авиамоторная",
+            "number": "147",
+            "color": "#FBC81E"
+        },
+        {
+            "name": "Спортивная",
+            "number": "15",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Алтуфьево",
+            "number": "152",
+            "color": "#9F9F9F"
+        },
+        {
+            "name": "Воробьёвы горы",
+            "number": "16",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Проспект Вернадского",
+            "number": "18",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Римская",
+            "number": "185",
+            "color": "#A8D92D"
+        },
+        {
+            "name": "Юго-Западная",
+            "number": "19",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Черкизовская",
+            "number": "2",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Тропарёво",
+            "number": "20",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Румянцево",
+            "number": "21",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Балтийская",
+            "number": "235",
+            "color": "#efadb5"
+        },
+        {
+            "name": "Аэропорт",
+            "number": "27",
+            "color": "#4DBE52"
+        },
+        {
+            "name": "Преображенская площадь",
+            "number": "3",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Маяковская",
+            "number": "30",
+            "color": "#4DBE52"
+        },
+        {
+            "name": "Новокузнецкая",
+            "number": "33",
+            "color": "#4DBE52"
+        },
+        {
+            "name": "Технопарк",
+            "number": "36",
+            "color": "#4DBE52"
+        },
+        {
+            "name": "Каширская",
+            "number": "38",
+            "color": "#4DBE52"
+        },
+        {
+            "name": "Сокольники",
+            "number": "4",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Мякинино",
+            "number": "48",
+            "color": "#2C75C4"
+        },
+        {
+            "name": "Красносельская",
+            "number": "5",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Кунцевская",
+            "number": "52",
+            "color": "#2C75C4"
+        },
+        {
+            "name": "Арбатская",
+            "number": "57",
+            "color": "#2C75C4"
+        },
+        {
+            "name": "Курская",
+            "number": "59",
+            "color": "#2C75C4"
+        },
+        {
+            "name": "Комсомольская",
+            "number": "6",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Бауманская",
+            "number": "60",
+            "color": "#2C75C4"
+        },
+        {
+            "name": "Партизанская",
+            "number": "63",
+            "color": "#2C75C4"
+        },
+        {
+            "name": "Красные Ворота",
+            "number": "7",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Фили",
+            "number": "71",
+            "color": "#4DC6F4"
+        },
+        {
+            "name": "Международная",
+            "number": "74",
+            "color": "#4DC6F4"
+        },
+        {
+            "name": "Чистые пруды",
+            "number": "8",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Лубянка",
+            "number": "9",
+            "color": "#D92B2C"
+        },
+        {
+            "name": "Проспект Мира",
+            "number": "99",
+            "color": "#F07025"
+        }
+    ]
+}

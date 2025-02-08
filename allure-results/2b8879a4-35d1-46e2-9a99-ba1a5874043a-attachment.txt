@@ -1,0 +1,14 @@
+--- Подготовка данных курьера:
+--> POST: {"login": "kelly33@example.net", "password": ")C1SE+gwC1"}
+<-- {'code': 404, 'message': 'Учетная запись не найдена'}
+--- Курьер успешно создан
+--> POST: {"login": "kelly33@example.net", "password": ")C1SE+gwC1"}
+<-- {'ok': True}
+--- Удаление курьера после теста:
+--> POST: {"login": "kelly33@example.net", "password": ")C1SE+gwC1"}
+<-- {'id': 468042}
+--> POST: {"login": "kelly33@example.net", "password": ")C1SE+gwC1"}
+<-- {'id': 468042}
+--> DELETE: {"id": "468042"}
+<-- {'ok': True}
+--- Курьер удалён

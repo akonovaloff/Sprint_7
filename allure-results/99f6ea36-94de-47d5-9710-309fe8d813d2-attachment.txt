@@ -1,0 +1,15 @@
+
+--> POST: {
+    "firstName": "Трифон",
+    "lastName": "Емельянов",
+    "address": "г. Улан-Удэ, ул. Алтайская, д. 972 стр. 768, 938154",
+    "metroStation": "6",
+    "phone": "+7 (812) 251-4164",
+    "rentTime": "2",
+    "deliveryDate": "2025-02-08",
+    "comment": "Лететь инфекция выбирать запретить трясти коричневый столетие.",
+    "color": [
+        "BLACK"
+    ]
+}
+<-- {'code': 500, 'message': 'values.map is not a function'}
