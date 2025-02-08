@@ -4,10 +4,10 @@ import json
 
 class ApiClient:
     BASE_API_URL = "https://qa-scooter.praktikum-services.ru/"
-    LOGIN_COURIER_URL = BASE_API_URL + "/api/v1/courier/login"
+    LOGIN_COURIER_URL = BASE_API_URL + "api/v1/courier/login"
     REGISTER_COURIER_URL = BASE_API_URL + "api/v1/courier"
-    DELETE_COURIER_URL = BASE_API_URL + "/api/v1/courier/"
-    CREATE_ORDER_URL = BASE_API_URL + "/api/v1/orders"
+    DELETE_COURIER_URL = BASE_API_URL + "api/v1/courier/"
+    CREATE_ORDER_URL = BASE_API_URL + "api/v1/orders"
 
     LOGIN_SUCCESS_CODE = 200
     LOGIN_NOT_FOUND_CODE = 404
@@ -18,6 +18,7 @@ class ApiClient:
     REGISTER_SUCCESS_CODE = 201
 
     DELETE_SUCCESS_CODE = 200
+    DELETE_NOT_FOUND_CODE = 404
 
     CREATE_ORDER_SUCCESS_CODE = 201
     ORDERS_SUCCESS_CODE = 200
@@ -116,7 +117,13 @@ class ApiClient:
         """
         payload = {"id": courier_id}
         print(f"--> DELETE: {json.dumps(payload)}")
-        response = requests.delete(url=self.DELETE_COURIER_URL + courier_id, data=payload)
+        response = requests.delete(url=self.DELETE_COURIER_URL + courier_id, params=payload, data=payload)
+        print(f"<-- {response.json()}")
+        return response
+
+    def send_delete_raw_data(self, payload):
+        print(f"--> DELETE: {json.dumps(payload)}")
+        response = requests.delete(url=self.DELETE_COURIER_URL, params=payload, data=payload)
         print(f"<-- {response.json()}")
         return response
 
