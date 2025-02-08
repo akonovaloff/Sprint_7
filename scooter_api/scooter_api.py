@@ -1,11 +1,13 @@
 import requests
 import json
 
+
 class ApiClient:
     BASE_API_URL = "https://qa-scooter.praktikum-services.ru/"
     LOGIN_COURIER_URL = BASE_API_URL + "/api/v1/courier/login"
     REGISTER_COURIER_URL = BASE_API_URL + "api/v1/courier"
     DELETE_COURIER_URL = BASE_API_URL + "/api/v1/courier/"
+    CREATE_ORDER_URL = BASE_API_URL + "/api/v1/orders"
 
     LOGIN_SUCCESS_CODE = 200
     LOGIN_NOT_FOUND_CODE = 404
@@ -16,6 +18,13 @@ class ApiClient:
     REGISTER_SUCCESS_CODE = 201
 
     DELETE_SUCCESS_CODE = 200
+
+    CREATE_ORDER_SUCCESS_CODE = 201
+    ORDERS_SUCCESS_CODE = 200
+
+    @staticmethod
+    def pretty_json(data: dict):
+        return json.dumps(data, indent=4, ensure_ascii=False).encode('utf8').decode()
 
     def send_register_raw_data(self, payload) -> requests.Response:
         """
@@ -123,3 +132,16 @@ class ApiClient:
             f"Не удалось удалить пользователя {courier_data["login"]}:"
             f"Ожидаемый статус-код: {self.DELETE_SUCCESS_CODE}, получен {del_resp.status_code}"
         )
+        assert del_resp.json() == {'ok': True}, "Формат ответ сервера не совпадает с ожидаемым"
+
+    def send_raw_data_to_create_order(self, payload):
+        print(f"\n--> POST: {self.pretty_json(payload)}")
+        resp = requests.post(self.CREATE_ORDER_URL, data=payload)
+        print(f"<-- {resp.json()}")
+        return resp
+
+    def send_raw_data_to_get_orders_list(self, payload):
+        print(f"\n--> GET: {self.pretty_json(payload)}")
+        resp = requests.get(self.CREATE_ORDER_URL, params=payload)
+        print(f"<-- {self.pretty_json(resp.json())}")
+        return resp

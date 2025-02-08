@@ -1,6 +1,7 @@
 import pytest
 from scooter_api.scooter_api import ApiClient
 from faker import Faker
+from random import randint, choice
 
 
 @pytest.fixture(scope='session')
@@ -54,3 +55,18 @@ def registered_user(client, user_data):
     """
     client.register(user_data)
     return user_data
+
+
+@pytest.fixture()
+def order_data():
+    fake = Faker("ru_RU")
+    ordr_data = {"firstName": fake.first_name(),
+                 "lastName": fake.last_name(),
+                 "address": fake.address(),
+                 "metroStation": str(randint(1, 20)),
+                 "phone": fake.phone_number(),
+                 "rentTime": str(randint(1, 8)),
+                 "deliveryDate": fake.date_between(start_date='today', end_date='+7d').strftime('%Y-%m-%d'),
+                 "comment": fake.sentence(),
+                 "color": choice([[], ["BLACK"], ["GRAY"], ["BLACK", "GREY"], ["GREY", "BLACK"]])}
+    return ordr_data

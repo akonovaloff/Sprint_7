@@ -57,7 +57,7 @@ class TestCreateCourier:
         assert resp.status_code in (client.REGISTER_UNFILLED_CODE, 504), (
             f'Удалось создать пользователя без обязательного поля "{required_field}"\n'
             f"\tДанные пользователя: {user}\n"
-            f"\tОжидался статус-код {client.REGISTER_SUCCESS_CODE}, получен {resp.status_code}\n"
+            f"\tОжидался статус-код {client.REGISTER_UNFILLED_CODE} или 504, получен {resp.status_code}\n"
             f"\tОтвет сервера: {resp.text}\n"
         )
 
