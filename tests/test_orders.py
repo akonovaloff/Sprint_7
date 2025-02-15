@@ -6,7 +6,7 @@ from conftest import order_data, client
 class TestCreateOrder:
     def test_create_order_success(self, order_data, client):
         order_resp = client.send_raw_data_to_create_order(order_data)
-        assert order_resp.status_code == client.CREATE_ORDER_SUCCESS_CODE, "Код ответа сервера не совпадает с ожидаемым"
+        assert order_resp.status_code == client.CREATE_ORDER_SUCCESS_CODE, f"Код ответа сервера не совпадает с ожидаемым. Ответ сервера: {order_resp.text}"
         assert "track" in order_resp.json(), 'В ответе сервера отсутствует обязательное поле "track"'
 
     @pytest.mark.parametrize("colors_array", [[], ["BLACK"], ["GRAY"], ["BLACK", "GREY"], ["GREY", "BLACK"]])

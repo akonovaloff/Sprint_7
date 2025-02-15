@@ -27,8 +27,7 @@ class TestDeleteCourier:
         assert resp.json()["message"] == "Курьера с таким id нет.", "Формат ответа не совпадает с ожидаемым"
 
     def test_delete_courier_without_id(self, client, registered_user):
-        courier_id = client.login(registered_user)
-        response = requests.delete(url=client.DELETE_COURIER_URL, data={"id": courier_id})
+        response = requests.delete(url=client.DELETE_COURIER_URL, data={"id": ""})
         print(f"<-- {response.json()}")
-        assert response.status_code == 400
+        assert response.status_code == 400, f"Ожидаемый статус-код при удалении без необходимых полей: 400 (Недостаточно данных), получен код: {response.status_code}"
         assert response.json()["message"] == "Недостаточно данных для удаления курьера"

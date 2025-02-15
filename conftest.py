@@ -20,7 +20,7 @@ def user_data(client):
     Если после теста курьер остаётся в системе, то фикстура его удаляет
     :param client: фикстура
     """
-    print("--- Подготовка данных курьера:")
+    print("Подготовка данных курьера:")
     faker = Faker()
     while True:
         # Генерируем данные курьера
@@ -32,17 +32,18 @@ def user_data(client):
                                                password=created_user["password"])
         if login_resp.status_code == client.LOGIN_NOT_FOUND_CODE:
             break
-    print(f"--- Курьер успешно создан")
+    print(f"Курьер успешно создан")
     yield created_user
 
     # Если пользователь существует, то удалить его после теста
-    print("--- Удаление курьера после теста:")
+    print("Удаление курьера после теста:")
     login_resp = client.send_login_request(login=created_user["login"], password=created_user["password"])
     if login_resp.status_code == client.LOGIN_SUCCESS_CODE:
+        created_user['id'] = str(login_resp.json()['id'])
         client.delete(created_user)
-        print(f"--- Курьер удалён")
+        print(f"Курьер удалён")
     else:
-        print(f"--- Курьер не найден")
+        print(f"Курьер не найден")
 
 
 @pytest.fixture()
@@ -54,6 +55,7 @@ def registered_user(client, user_data):
     :return:
     """
     client.register(user_data)
+    user_data['id'] = client.login(user_data)
     return user_data
 
 

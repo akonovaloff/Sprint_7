@@ -26,10 +26,12 @@ class TestCreateCourier:
         Тест проверяет статус-код и формат ответа сервера при создании дубликатов курьера
         """
         # Логинимся, чтобы проверить, что пользователь создан и получить его id
-        src_id = client.login(registered_user)
+        src_id = registered_user['id']
 
         # Отправляем запрос на повторную регистрацию пользователя
-        resp = client.send_register_request(**registered_user)
+        resp = client.send_register_request(login=registered_user['login'],
+                                            password=registered_user['password'],
+                                            first_name=registered_user['first_name'])
 
         # Поверяем статус-код ответа
         assert resp.status_code == client.REGISTER_CONFLICT_CODE, (

@@ -60,7 +60,8 @@ class TestLoginCourier:
         del user["first_name"]
         for key in empty_fields:
             user[key] = []
-        resp = client.send_login_request(**user)
+        resp = client.send_login_request(login=user['login'],
+                                         password=user['password'])
         assert resp.status_code == client.LOGIN_NOT_FOUND_CODE
 
     def test_login_with_unmatched_password(self, registered_user, client):
@@ -72,5 +73,6 @@ class TestLoginCourier:
         user = registered_user.copy()
         del user["first_name"]
         user["password"] = user["password"][0:-1]
-        resp = client.send_login_request(**user)
+        resp = client.send_login_request(login=user['login'],
+                                         password=user['password'])
         assert resp.status_code == client.LOGIN_NOT_FOUND_CODE
