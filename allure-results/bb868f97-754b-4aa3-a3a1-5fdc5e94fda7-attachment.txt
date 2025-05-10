@@ -1,0 +1,10 @@
+--- Подготовка данных курьера:
+--> POST: {"login": "careymelissa@example.net", "password": "+9FBzT+5#p"}
+<-- {'code': 404, 'message': 'Учетная запись не найдена'}
+--- Курьер успешно создан
+--> POST: {"login": "careymelissa@example.net", "firstName": "Rachel"}
+<-- {'code': 400, 'message': 'Недостаточно данных для создания учетной записи'}
+--- Удаление курьера после теста:
+--> POST: {"login": "careymelissa@example.net", "password": "+9FBzT+5#p"}
+<-- {'code': 404, 'message': 'Учетная запись не найдена'}
+--- Курьер не найден

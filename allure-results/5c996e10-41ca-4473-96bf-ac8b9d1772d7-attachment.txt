@@ -1,0 +1,15 @@
+
+--> POST: {
+    "firstName": "Авксентий",
+    "lastName": "Анисимов",
+    "address": "клх Краснодар, пр. Весенний, д. 33 к. 4/8, 108164",
+    "metroStation": "13",
+    "phone": "+7 723 656 92 47",
+    "rentTime": "2",
+    "deliveryDate": "2025-02-08",
+    "comment": "Анализ освобождение рабочий полевой изба сынок.",
+    "color": [
+        "GRAY"
+    ]
+}
+<-- {'code': 500, 'message': 'values.map is not a function'}

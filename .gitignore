@@ -1,0 +1,7 @@
+.venv/
+.idea/
+__pycache__/
+run_tests.bat
+
+allure_results/
+main.py
